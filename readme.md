@@ -1,3 +1,7 @@
 https://speech.ee.ntu.edu.tw/~hylee/ml/2022-spring.php  
 
-https://inst.eecs.berkeley.edu/~cs152/sp22/
+https://inst.eecs.berkeley.edu/~cs152/sp22/  
+
+https://zhuanlan.zhihu.com/p/485992286  https://aijishu.com/a/1060000000311702  H100  
+
+https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf  https://zhuanlan.zhihu.com/p/146042266 A100
