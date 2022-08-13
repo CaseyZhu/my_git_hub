@@ -1,0 +1,276 @@
+#top
+#waive -ip {MPInst1} -rule {WRN_26} -comment {\
+#new macro will ovverwrite the old ones, zhuzhiqi 2022.03.16 \
+#}
+#waive -msg { *synchronizers (MPTopWrapper.u_MPTop*) converge on combinational* } -rule {Ac_conv01} -comment {\
+#Ateris said this can waive, zhuzhiqi 2022.03.16  \
+#}
+
+#waive -msg { *Asynchronous reset signal 'MPTopWrapper.rst_n_noc' is synchronized at least twice* } -rule {Reset_sync04} -comment {\
+#tool take cdc sync logic as reset sync,  zhuzhiqi 2022.03.16 \
+#}
+#waive -msg { *Asynchronous reset signal 'MPTopWrapper.rst_n_cfg' is synchronized at least twice* } -rule {Reset_sync04} -comment {\
+#tool take cdc sync logic as reset sync,  zhuzhiqi 2022.03.16  \
+#}
+
+#waive -msg { *Asynchronous reset signal 'MPTopWrapper.rst_n_hbm' is synchronized at least twice* } -rule {Reset_sync04} -comment {\
+#tool take cdc sync logic as reset sync,  zhuzhiqi 2022.03.16  \
+#}
+#waive -msg { *Asynchronous reset signal 'MPTopWrapper.u_MPTop.u_MPInst0.rst_n_cfg_sync' is synchronized at least twice* } -rule {Reset_sync04} -comment {\
+#tool take cdc sync logic as reset sync,  zhuzhiqi 2022.03.16  \
+#}
+
+#waive -msg { *Asynchronous reset signal 'MPTopWrapper.u_MPTop.u_MPInst0.mpcfg_rstsync_inst.pre_rstn' is synchronized at least twice* } -rule {Reset_sync04} -comment {\
+#tool take cdc sync logic as reset sync,  zhuzhiqi 2022.03.16  \
+#}
+
+waive -msg {*MPTop.u_MPInst1.u_noc_mp_ss_mp_noc_sub1_top.u_noc_mp_ss_mp_noc_sub1.uAnd2.T2_0*} -rule {{Ac_conv01} {Ac_conv02}} -comment {this signal will converge in INST0, but finnally it have no load in NOC, and arteris make sure logic right, zhuzhiqi 2022.04.14}
+
+waive -msg {*MPTopWrapper.u_MPTop.i_MpNocRegime_Cm_root_Pwr_Idle*} -rule {{Ac_conv01} {Ac_conv02}} -comment {Pwr_Idle have no load in NOC, and arteris make sure this can waive, zhuzhiqi 2022.04.14}
+
+
+waive -ip {mp_cache_to_hbm} -rule {Ac_conv02} -msg {*MPTopWrapper.u_MPTop.u_MPInst1.u_noc_mp_ss_mp_noc_sub1_top*u_mp_cache_to_hbm_top*converge on combinational gate*Pwr_Idle*} -comment {Pwr_Idle have no load in NOC, and arteris make sure this can waive, zhuzhiqi 2022.04.14}
+
+waive -ip {mp_cache_to_hbm} -rule {Ac_conv02} -msg {*MPTopWrapper.u_MPTop.u_MPInst1.u_noc_mp_ss_mp_noc_sub1_top*u_mp_cache_to_hbm_top*converge on combinational gate*Tx1_Press*} -comment {Tx1_Press have no load in 1x1 NOC, and arteris make sure this can waive, zhuzhiqi 2022.04.14} 
+
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {Ac_conv04} -comment {\
+Ateris said this can waive,  zhuzhiqi 2022.03.16  \
+}
+
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {Ac_datahold01a} -comment {\
+Ateris said this can waive,  zhuzhiqi 2022.03.16  \
+}
+
+waive -ip {mp_cache_to_hbm} -rule {Ac_conv01} -comment {\
+Ateris said this can waive,  zhuzhiqi 2022.03.16  \
+}
+waive -ip {mp_cache_to_hbm} -rule {Ac_conv04} -comment {\
+Ateris said this can waive,  zhuzhiqi 2022.03.16  \
+}
+
+waive -ip {mp_cache_to_hbm} -rule {Ac_datahold01a} -comment {\
+Ateris said this can waive,  zhuzhiqi 2022.03.16  \
+}
+
+
+#sub1
+#####################################################################
+## Created by FlexNoC(4.5.2) script export on 2021-12-21 03:42:57
+#noc_mp_ss_mp_noc_sub1
+####################################################################
+
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {InferLatch} -comment {\
+We allow the inference of a latch in clock gater cells.\
+If you see this suppressed in more than a gater cell, it should be investigated. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {Clock_Reset_check02} -comment {\
+There is no race condition between the gater and the data.\
+The clock is turned on before data arrives and shut off after data stops being transmitted. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {Ac_cdc01a} -comment {\
+Possible data loss in async crossing going from fast to slow.\
+There will be no data loss the crossings, they are correct by construction. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {Reset_sync02} -comment {\
+Async reset generated in an async clock domain domain.\
+This is fine when reset is de-asserted with clock off. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {MuxSelConst} -comment {\
+Width of the select lines can be greater than the recommended value because \
+either input of the Mux share identical value (case of constants which are read in a static table) \
+or all possible states of the select signal are not used. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {FlopEConst} -comment {\
+Local constants propagation has been made (which means constant set in the module where the Mux is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {DisabledAnd} -comment {\
+Local constants propagation has been made (which means constant set in the module where the And is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {DisabledOr} -comment {\
+Local constants propagation has been made (which means constant set in the module where the Or is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {FlopDataConstant} -comment {\
+Local constants propagation has been made (which means constant set in the module where the Dff is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {LogNMux} -comment {\
+Select input can be greater than the recommended value because input of the Mux share identical value. \
+(In practice the decodage is incomplete so there is not any timing problem). \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {RegOutputs} -comment {Output not registered are supported only with AHB interface with signals: HRData, HReady, HReadySel}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC-1.1.1.1} -comment {\
+Due to synthesis engine, interconnect design usually contains hundred of module description. \
+Can be confused if design is written based on one module per file. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {NoExprInPort-ML} -comment {Supported by Verilog HDL specification}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {UnloadedInPort-ML} -comment {\
+Genericity of the RTL database which is vector based for dedicated signals. \
+For instance internal clock signal is bus based containing the following bits: \
+Sys_Clk, Sys_Clk_ClkS, Sys_Clk_En, Sys_Clk_EnS, Sys_Clk_RetRstN, Sys_Clk_RstN, Sys_Clk_Tm \
+Using this clock signal (which is described as vector) will automatically create ports at the interface even if some of them are not used. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {UnloadedNet-ML} -comment {\
+Genericity of the RTL database which is vector based for dedicated signals. \
+Using an internal signal will automatically declare all bits of the signal even some one them are not used. \
+There is not any RTL optimization due to non-uniquify FlexNoC output. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {UnloadedOutTerm-ML} -comment {Genericity about module interface.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {UnloadedOutTerm-ML} -comment {Genericity about module interface.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W240} -comment {Genericity about module interface.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W164a} -comment {Arithmetic overflow/underflow checked with assert in simulation & adress wrap checked by monitor.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W484} -comment {Arithmetic overflow/underflow checked with assert in simulation & adress wrap checked by monitor.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W528} -comment {Genericity about module interface.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W287b} -comment {Interface output port Not connected. Possible reasons are unused bits in a regiser, unstitched BIST wrappers, etc.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W110} -comment {Construction is allowed and tested by simulation.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC-2.10.6.1} -comment {Arithmetic checked with assert in simulation & assignment width checked by monitor.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC-2.10.6.1} -comment {Arithmetic checked with assert in simulation & adress wrap checked by monitor.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {SYNTH_5032} -comment {\
+Due to synthesis engine, hanging user instance can be present in the generated HDL file. \
+Corner case is usually: trigger signals used with simulation primitive \$display(SimulError ...) \
+and these signals are not protected with translate_off directive. \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {WRN_69} -comment {Timescale directive always defined for every modules}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {WRN_74} -comment {Warning is reported but directive: translate_on/translate_off is well balanced \
+(HDL description is alway simulated and synthesized) \
+Following directive can also be used to avoid this message: set_option pragma { synopsys } \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W189} -comment {Warning is reported but directive: translate_on is well balanced with translate_off \
+(HDL description is alway simulated and synthesized) \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {PESTR08} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {PESTR11} -comment {\
+Internal constant can be present due to Specification setting enabled but not used \
+(for example case of a definition of nUrgencyLevel but no QoS feature present in some NIUs leads to stuck-at the internal Pressure signal). \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {PESTR12} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {PESTR20} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {PESTR21} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {SYNTH_5066} -comment {RTL description written by FlexNoC needs to be optimized because HDL data is generated from on generic module.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC05-1.1.2.1a} -comment {Module name is made on the concatenation of the different module name present in the hierarchy to improve readibility.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC05-1.1.2.1b} -comment {Instance name is based on the concatenation of the different instance name present in the hierarchy to improve readibility.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC05-1.1.3.3a} -comment {Signal name is based on the concatenation of the different instance name present in the hierarchy to improve readibility.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC05-1.1.3.3b} -comment {Port name is based on the concatenation of the different instance name present in the hierarchy to improve readibility.}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC-2.2.3.1} -comment {\
+Delay has been inserted to avoid race condition during simulation \
+(in case of none delay, hold problem can arrive with clock gating structure for example. Normally delay is not taken into account during synthesis). \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {STARC05-2.2.3.1} -comment {\
+Delay has been inserted to avoid race condition during simulation \
+(in case of none delay, hold problem can arrive with clock gating structure for example. Normally delay is not taken into account during synthesis). \
+}
+waive -ip {noc_mp_ss_mp_noc_sub1} -rule {W257} -comment {\
+Delay has been inserted to avoid race condition during simulation \
+(in case of none delay, hold problem can arrive with clock gating structure for example. Normally delay is not taken into account during synthesis). \
+}
+
+# to hbm
+waive -ip {mp_cache_to_hbm} -rule {InferLatch} -comment {\
+We allow the inference of a latch in clock gater cells.\
+If you see this suppressed in more than a gater cell, it should be investigated. \
+}
+waive -ip {mp_cache_to_hbm} -rule {Clock_Reset_check02} -comment {\
+There is no race condition between the gater and the data.\
+The clock is turned on before data arrives and shut off after data stops being transmitted. \
+}
+waive -ip {mp_cache_to_hbm} -rule {Ac_cdc01a} -comment {\
+Possible data loss in async crossing going from fast to slow.\
+There will be no data loss the crossings, they are correct by construction. \
+}
+waive -ip {mp_cache_to_hbm} -rule {Reset_sync02} -comment {\
+Async reset generated in an async clock domain domain.\
+This is fine when reset is de-asserted with clock off. \
+}
+waive -ip {mp_cache_to_hbm} -rule {MuxSelConst} -comment {\
+Width of the select lines can be greater than the recommended value because \
+either input of the Mux share identical value (case of constants which are read in a static table) \
+or all possible states of the select signal are not used. \
+}
+waive -ip {mp_cache_to_hbm} -rule {FlopEConst} -comment {\
+Local constants propagation has been made (which means constant set in the module where the Mux is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {mp_cache_to_hbm} -rule {DisabledAnd} -comment {\
+Local constants propagation has been made (which means constant set in the module where the And is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {mp_cache_to_hbm} -rule {DisabledOr} -comment {\
+Local constants propagation has been made (which means constant set in the module where the Or is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {mp_cache_to_hbm} -rule {FlopDataConstant} -comment {\
+Local constants propagation has been made (which means constant set in the module where the Dff is instantiated). \
+Remaining unpropagated constants are due to non-uniquify FlexNoC output. \
+}
+waive -ip {mp_cache_to_hbm} -rule {LogNMux} -comment {\
+Select input can be greater than the recommended value because input of the Mux share identical value. \
+(In practice the decodage is incomplete so there is not any timing problem). \
+}
+waive -ip {mp_cache_to_hbm} -rule {RegOutputs} -comment {Output not registered are supported only with AHB interface with signals: HRData, HReady, HReadySel}
+waive -ip {mp_cache_to_hbm} -rule {STARC-1.1.1.1} -comment {\
+Due to synthesis engine, interconnect design usually contains hundred of module description. \
+Can be confused if design is written based on one module per file. \
+}
+waive -ip {mp_cache_to_hbm} -rule {NoExprInPort-ML} -comment {Supported by Verilog HDL specification}
+waive -ip {mp_cache_to_hbm} -rule {UnloadedInPort-ML} -comment {\
+Genericity of the RTL database which is vector based for dedicated signals. \
+For instance internal clock signal is bus based containing the following bits: \
+Sys_Clk, Sys_Clk_ClkS, Sys_Clk_En, Sys_Clk_EnS, Sys_Clk_RetRstN, Sys_Clk_RstN, Sys_Clk_Tm \
+Using this clock signal (which is described as vector) will automatically create ports at the interface even if some of them are not used. \
+}
+waive -ip {mp_cache_to_hbm} -rule {UnloadedNet-ML} -comment {\
+Genericity of the RTL database which is vector based for dedicated signals. \
+Using an internal signal will automatically declare all bits of the signal even some one them are not used. \
+There is not any RTL optimization due to non-uniquify FlexNoC output. \
+}
+waive -ip {mp_cache_to_hbm} -rule {UnloadedOutTerm-ML} -comment {Genericity about module interface.}
+waive -ip {mp_cache_to_hbm} -rule {UnloadedOutTerm-ML} -comment {Genericity about module interface.}
+waive -ip {mp_cache_to_hbm} -rule {W240} -comment {Genericity about module interface.}
+waive -ip {mp_cache_to_hbm} -rule {W164a} -comment {Arithmetic overflow/underflow checked with assert in simulation & adress wrap checked by monitor.}
+waive -ip {mp_cache_to_hbm} -rule {W484} -comment {Arithmetic overflow/underflow checked with assert in simulation & adress wrap checked by monitor.}
+waive -ip {mp_cache_to_hbm} -rule {W528} -comment {Genericity about module interface.}
+waive -ip {mp_cache_to_hbm} -rule {W287b} -comment {Interface output port Not connected. Possible reasons are unused bits in a regiser, unstitched BIST wrappers, etc.}
+waive -ip {mp_cache_to_hbm} -rule {W110} -comment {Construction is allowed and tested by simulation.}
+waive -ip {mp_cache_to_hbm} -rule {STARC-2.10.6.1} -comment {Arithmetic checked with assert in simulation & assignment width checked by monitor.}
+waive -ip {mp_cache_to_hbm} -rule {STARC-2.10.6.1} -comment {Arithmetic checked with assert in simulation & adress wrap checked by monitor.}
+waive -ip {mp_cache_to_hbm} -rule {SYNTH_5032} -comment {\
+Due to synthesis engine, hanging user instance can be present in the generated HDL file. \
+Corner case is usually: trigger signals used with simulation primitive \$display(SimulError ...) \
+and these signals are not protected with translate_off directive. \
+}
+waive -ip {mp_cache_to_hbm} -rule {WRN_69} -comment {Timescale directive always defined for every modules}
+waive -ip {mp_cache_to_hbm} -rule {WRN_74} -comment {Warning is reported but directive: translate_on/translate_off is well balanced \
+(HDL description is alway simulated and synthesized) \
+Following directive can also be used to avoid this message: set_option pragma { synopsys } \
+}
+waive -ip {mp_cache_to_hbm} -rule {W189} -comment {Warning is reported but directive: translate_on is well balanced with translate_off \
+(HDL description is alway simulated and synthesized) \
+}
+waive -ip {mp_cache_to_hbm} -rule {PESTR08} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {mp_cache_to_hbm} -rule {PESTR11} -comment {\
+Internal constant can be present due to Specification setting enabled but not used \
+(for example case of a definition of nUrgencyLevel but no QoS feature present in some NIUs leads to stuck-at the internal Pressure signal). \
+}
+waive -ip {mp_cache_to_hbm} -rule {PESTR12} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {mp_cache_to_hbm} -rule {PESTR20} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {mp_cache_to_hbm} -rule {PESTR21} -comment {Clock gating implementation is made by third-party CAD tools.}
+waive -ip {mp_cache_to_hbm} -rule {SYNTH_5066} -comment {RTL description written by FlexNoC needs to be optimized because HDL data is generated from on generic module.}
+waive -ip {mp_cache_to_hbm} -rule {STARC05-1.1.2.1a} -comment {Module name is made on the concatenation of the different module name present in the hierarchy to improve readibility.}
+waive -ip {mp_cache_to_hbm} -rule {STARC05-1.1.2.1b} -comment {Instance name is based on the concatenation of the different instance name present in the hierarchy to improve readibility.}
+waive -ip {mp_cache_to_hbm} -rule {STARC05-1.1.3.3a} -comment {Signal name is based on the concatenation of the different instance name present in the hierarchy to improve readibility.}
+waive -ip {mp_cache_to_hbm} -rule {STARC05-1.1.3.3b} -comment {Port name is based on the concatenation of the different instance name present in the hierarchy to improve readibility.}
+waive -ip {mp_cache_to_hbm} -rule {STARC-2.2.3.1} -comment {\
+Delay has been inserted to avoid race condition during simulation \
+(in case of none delay, hold problem can arrive with clock gating structure for example. Normally delay is not taken into account during synthesis). \
+}
+waive -ip {mp_cache_to_hbm} -rule {STARC05-2.2.3.1} -comment {\
+Delay has been inserted to avoid race condition during simulation \
+(in case of none delay, hold problem can arrive with clock gating structure for example. Normally delay is not taken into account during synthesis). \
+}
+waive -ip {mp_cache_to_hbm} -rule {W257} -comment {\
+Delay has been inserted to avoid race condition during simulation \
+(in case of none delay, hold problem can arrive with clock gating structure for example. Normally delay is not taken into account during synthesis). \
+}
+

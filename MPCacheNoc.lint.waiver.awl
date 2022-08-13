@@ -1,0 +1,27 @@
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {W287b} -msg {Instance output port * is not connected*} -comment {design do not use the output signal, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {FlopEConst} -msg {*is  always *abled*} -comment {signal tie const value, logic right, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {DefaultState} -msg {State Machine should have a default state} -comment {all state can reach, no need default, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {ResetFlop-ML} -msg {*has no set or reset*} -comment {data use dff without reset save area and power, zhuzhiqi,2022.03.17 }
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {W240} -msg {*declared but not read*} -comment {some signal no use, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {W71} -msg {*Case statement does not have a default clause*} -comment {all case listed, no need default, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {W362} -msg {*left expression* width * should match right expression*} -comment {tool will cut parameter's width to fit expression, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {W528} -msg {*Variable * set but not read*} -comment {some signal not use, zhuzhiqi,2022.03.17}
+
+waive -ip { {CodaCacheTop} {mp_cache_split_top}  {noc_mp_ss_mp_noc_sub0_top} {noc_mp_ss_mp_noc_sub1_top} {mp_cache_to_hbm_top} } \
+-rule {W528} -msg {*Variable * set but not read*} -comment {some signal not use, zhuzhiqi,2022.03.17}
