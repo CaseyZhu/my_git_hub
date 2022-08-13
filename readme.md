@@ -5,3 +5,9 @@ https://inst.eecs.berkeley.edu/~cs152/sp22/
 https://zhuanlan.zhihu.com/p/485992286  https://aijishu.com/a/1060000000311702  H100  
 
 https://images.nvidia.com/aem-dam/en-zz/Solutions/data-center/nvidia-ampere-architecture-whitepaper.pdf  https://zhuanlan.zhihu.com/p/146042266 A100
+
+https://silcnitc.github.io/roadmap.html  lex && yacc  
+
+http://jonathan2251.github.io/lbd/llvmstructure.html  llvm back end  
+
+
