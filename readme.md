@@ -11,3 +11,5 @@ https://silcnitc.github.io/roadmap.html  lex && yacc
 http://jonathan2251.github.io/lbd/llvmstructure.html  llvm back end  
 
 
+https://en.wikipedia.org/wiki/Superscalar_processor  
+https://en.wikipedia.org/wiki/Cyrix_6x86#cite_note-M1DataSheet-45  
