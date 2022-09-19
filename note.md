@@ -3,3 +3,11 @@ Embedding在数学上表示一个maping, f: X -> Y， 也就是一个function，
 通俗的翻译可以认为是单词嵌入，就是把X所属空间的单词映射为到Y空间的多维向量，那么该多维向量相当于嵌入到Y所属空间中，一个萝卜一个坑。
 word embedding，就是找到一个映射或者函数，生成在一个新的空间上的表达，该表达就是word representation。
 推广开来，还有image embedding, video embedding, 都是一种将源数据映射到另外一个空间。
+
+create_clock -name CLK -period 1 [get_ports clk]
+
+
+set ins [remove_from_collection [all_inputs] [get_attribute [all_clocks] sources]]
+set outs [all_outputs]
+set_input_delay 0.6 -clock CLK $ins
+set_output_delay 0.6 -clock CLK $outs
