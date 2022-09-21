@@ -16,3 +16,5 @@ https://en.wikipedia.org/wiki/Cyrix_6x86#cite_note-M1DataSheet-45
 https://zhuanlan.zhihu.com/p/64744154  https://zhuanlan.zhihu.com/p/299108528 量化  
 
 https://en.wikipedia.org/wiki/Pseudo-LRU  
+
+https://zhuanlan.zhihu.com/p/61762831 Turing T4
