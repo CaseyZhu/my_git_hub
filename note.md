@@ -11,3 +11,8 @@ set ins [remove_from_collection [all_inputs] [get_attribute [all_clocks] sources
 set outs [all_outputs]
 set_input_delay 0.6 -clock CLK $ins
 set_output_delay 0.6 -clock CLK $outs
+
+
+You have to create a mode flag in the Specification/Mappings/Flags first, then you will find the mode flag in the memory field. After this, you would set the value accordingly.
+
+
