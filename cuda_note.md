@@ -35,3 +35,7 @@ There are also two additional read-only memory spaces accessible by all threads:
 The global, constant, and texture memory spaces are persistent across kernel launches by the same application.  
 
 ![hierarchy](https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/memory-hierarchy.png)
+
+# Asynchronous Operations
+An asynchronous operation is defined as an operation that is initiated by a CUDA thread and is executed asynchronously as-if by another thread. In a well formed program one or more CUDA threads synchronize with the asynchronous operation. **The CUDA thread that initiated the asynchronous operation is not required to be among the synchronizing threads.**
+
