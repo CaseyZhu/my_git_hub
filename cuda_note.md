@@ -34,4 +34,4 @@ There are also two additional read-only memory spaces accessible by all threads:
 
 The global, constant, and texture memory spaces are persistent across kernel launches by the same application.  
 
-![https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/memory-hierarchy.png]
+![hierarchy](https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/memory-hierarchy.png)
