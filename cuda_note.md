@@ -47,3 +47,7 @@ An asynchronous operation is defined as an operation that is initiated by a CUDA
 4. copy cpu 空间的数据到GPU,回收cpu memory
 5. GPU 修改内存数据
 6. cpu 访问时报缺页异常，从gpu 把数据copy 会cpu,回收gpu 存储的数据
+
+# stream and event
+
+
