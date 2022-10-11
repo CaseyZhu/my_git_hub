@@ -40,3 +40,10 @@ The global, constant, and texture memory spaces are persistent across kernel lau
 # Asynchronous Operations
 An asynchronous operation is defined as an operation that is initiated by a CUDA thread and is executed asynchronously as-if by another thread. In a well formed program one or more CUDA threads synchronize with the asynchronous operation. **The CUDA thread that initiated the asynchronous operation is not required to be among the synchronizing threads.** async copy 应该是一条per-thread的粗粒度指令，这样才能尽可能的实现访存和计算并行，细粒度指令会影响计算指令下发。
 
+# Host GPU unify memory（虚拟地址）实现
+1. CPU 分配存储空间
+2. CPU 对存储空间操作
+3. GPU 对存储空间操作时报异常
+4. copy cpu 空间的数据到GPU,回收cpu memory
+5. GPU 修改内存数据
+6. cpu 访问时报缺页异常，从gpu 把数据copy 会cpu,回收gpu 存储的数据
