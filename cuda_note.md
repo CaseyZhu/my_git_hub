@@ -38,5 +38,5 @@ The global, constant, and texture memory spaces are persistent across kernel lau
 ![hierarchy](https://docs.nvidia.com/cuda/cuda-c-programming-guide/graphics/memory-hierarchy.png)
 
 # Asynchronous Operations
-An asynchronous operation is defined as an operation that is initiated by a CUDA thread and is executed asynchronously as-if by another thread. In a well formed program one or more CUDA threads synchronize with the asynchronous operation. **The CUDA thread that initiated the asynchronous operation is not required to be among the synchronizing threads.**
+An asynchronous operation is defined as an operation that is initiated by a CUDA thread and is executed asynchronously as-if by another thread. In a well formed program one or more CUDA threads synchronize with the asynchronous operation. **The CUDA thread that initiated the asynchronous operation is not required to be among the synchronizing threads.** async copy 应该是一条per-thread的粗粒度指令，这样才能尽可能的实现访存和计算并行，细粒度指令会影响计算指令下发。
 
