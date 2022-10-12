@@ -53,7 +53,10 @@ Applications manage the concurrent operations described above through streams. A
 
 There are various ways to explicitly synchronize streams with each other.
 
-**cudaDeviceSynchronize() waits until all preceding commands in all streams of all host threads have completed.  
-cudaStreamSynchronize()takes a stream as a parameter and waits until all preceding commands in the given stream have completed. It can be used to synchronize the host with a specific stream, allowing other streams to continue executing on the device.  
-cudaStreamWaitEvent()takes a stream and an event as parameters (see Events for a description of events)and makes all the commands added to the given stream after the call to cudaStreamWaitEvent()delay their execution until the given event has completed.  
-cudaStreamQuery()provides applications with a way to know if all preceding commands in a stream have completed.**
+**cudaDeviceSynchronize()** waits until all preceding commands in all streams of all host threads have completed.  
+**cudaStreamSynchronize()** takes a stream as a parameter and waits until all preceding commands in the given stream have completed. It can be used to synchronize the host with a specific stream, allowing other streams to continue executing on the device.  
+**cudaStreamWaitEvent()** takes a stream and an event as parameters (see Events for a description of events)and makes all the commands added to the given stream after the call to cudaStreamWaitEvent()** delay their execution until the given event has completed.  
+**cudaStreamQuery()** provides applications with a way to know if all preceding commands in a stream have completed.
+
+# CUDA Graphs
+CUDA Graphs present a new model for work submission in CUDA. A graph is a series of operations, such as kernel launches, connected by dependencies, which is defined separately from its execution. This allows a graph to be defined once and then launched repeatedly. **Separating out the definition of a graph from its execution enables a number of optimizations:** first, CPU launch costs are reduced compared to streams, because much of the setup is done in advance; second, presenting the whole workflow to CUDA enables optimizations which might not be possible with the piecewise work submission mechanism of streams.
