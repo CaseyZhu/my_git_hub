@@ -49,5 +49,11 @@ An asynchronous operation is defined as an operation that is initiated by a CUDA
 6. cpu 访问时报缺页异常，从gpu 把数据copy 会cpu,回收gpu 存储的数据
 
 # stream and event
+Applications manage the concurrent operations described above through streams. A stream is a sequence of commands (possibly issued by different host threads) that execute in order. Different streams, on the other hand, may execute their commands out of order with respect to one another or concurrently; this behavior is not guaranteed and should therefore not be relied upon for correctness (for example, inter-kernel communication is undefined). The commands issued on a stream may execute when all the dependencies of the command are met. The dependencies could be previously launched commands on same stream or dependencies from other streams. The successful completion of synchronize call guarantees that all the commands launched are completed.
 
+There are various ways to explicitly synchronize streams with each other.
 
+**cudaDeviceSynchronize() waits until all preceding commands in all streams of all host threads have completed.  
+cudaStreamSynchronize()takes a stream as a parameter and waits until all preceding commands in the given stream have completed. It can be used to synchronize the host with a specific stream, allowing other streams to continue executing on the device.  
+cudaStreamWaitEvent()takes a stream and an event as parameters (see Events for a description of events)and makes all the commands added to the given stream after the call to cudaStreamWaitEvent()delay their execution until the given event has completed.  
+cudaStreamQuery()provides applications with a way to know if all preceding commands in a stream have completed.**
