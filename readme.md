@@ -17,4 +17,6 @@ https://zhuanlan.zhihu.com/p/64744154  https://zhuanlan.zhihu.com/p/299108528 é‡
 
 https://en.wikipedia.org/wiki/Pseudo-LRU  
 
-https://zhuanlan.zhihu.com/p/61762831 Turing T4
+https://zhuanlan.zhihu.com/p/61762831 Turing T4  
+
+https://blog.csdn.net/weixin_38669561/article/details/105219896
