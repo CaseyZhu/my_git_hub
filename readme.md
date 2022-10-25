@@ -19,4 +19,6 @@ https://en.wikipedia.org/wiki/Pseudo-LRU
 
 https://zhuanlan.zhihu.com/p/61762831 Turing T4  
 
-https://blog.csdn.net/weixin_38669561/article/details/105219896
+https://blog.csdn.net/weixin_38669561/article/details/105219896  
+
+http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/3batch-system.html#id1
