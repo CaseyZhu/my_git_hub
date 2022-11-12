@@ -25,3 +25,5 @@ http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter2/3batch-system.html#id1
 
 https://www.jiqizhixin.com/articles/2021-02-24-7  
 
+
+https://www.techpowerup.com/gpu-specs/
