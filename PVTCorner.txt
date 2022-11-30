@@ -1,0 +1,58 @@
+https://www.cnblogs.com/e-shannon/p/16822006.html
+zt: STA | SSGNP, FFGNP ；芯片工艺SSG/FFG/TT的区别与联系
+https://aijishu.com/a/1060000000197264
+
+作者：陌上风骑驴
+来源：https://mp.weixin.qq.com/s/eJ8fYRJBR1E9XbfH95OUOg
+作者微信公众号
+
+ 
+
+人类的一大技能是给万物取名儿，更激进一点的还会定义『主义』，少数人给出这些虚的实的名号，多数人就像着了魔似的想要在这人造的名称中寻找根源、真理跟意义，如半导体圈儿奉为圭臬的『摩尔定律』。
+
+PVT Corner 的名称亦如此，如果抛开这些名称去看，其实只是做了两件事儿：
+
+接近真实，剔除悲观度；
+为了接近真实精化仿真模型；
+『剔除悲观度』是数字实现领域从EDA 到design house 到Foundry 一直在做的事儿，手段无非是『模型精化』。回到今日主题，PVT corner 名字演进的背后，同样是『模型精华』，从ss 到ssg 无非是将local variation 这部分效应在仿真时做了剥离，从固定到随机，通过其他方式予以补偿，从ssg 到ssgnp 无非是对『随机性』进一步回归—— ssgnp 中的NP 表示NMOS, PMOS cancelation —— 老驴将其概括为『祸不双降』。
+
+WeChat Image_20210413095109.jpg
+
+PVT Variation 仿真模型随着工艺进步一直被微调，从ss 到ssg 到ssgnp 就是把Global variation 跟local variation 排列组合，要么一起门特卡洛，要么分开门特卡洛，此处概括为两种方式：
+
+Global corner with local Monte Carlo: 假设片子上所有管子都朝同一个方向偏，所有管子都有相同的Gloabl variation 和local variation, 这就是ss, ff corner 所用的方法，工艺偏差本就是个随机事件，过度保守地应对随机性，必定导致过于悲观的结果。
+Full Monte Carlo: <有驴友笑称门特卡洛是口缸，啥都可以往里装>, ssg 跟ffg corner 用的就是这种仿真模型，此处所谓的Full = Global Monte Carlo + Local Monte Carlo, 其中Global 就是之前多次提到的Global variation, 此处又一次『不无悲观』的假设所有管子都有相同的Global variation; 但进步之处是，local variation 不再被固定，而是用『伪随机值』，即AOCV, SOCV/POCV 来拟合。ssgnp 跟ffgnp 在此基础上又进了一步，回归NMOS 管跟PMOS 管偏差的随机性，即所谓的NMOS, PMOS cancelation。
+WeChat Image_20210413095141.jpg
+
+上面这张丑图的左侧，大致表示了SS, SSG, SSGNP 跟FF, FFG, FFGNP 的相对关系，假设在相同工艺下对相同cell 分别用三种模型做了仿真，则cell delay 的关系为：SSGNP < SSG < SS, FFGNP > FFG > FF. 上面这张丑图的右侧表示了SSG, SSGNP 跟FFG, FFGNP, Global variation 的值，由于『相互抵消作用』，SSGNP-GV < SSG-GV, FFGNP-GV < FFG-GV.
+
+看到没看到没，其实叫什么都只是一个叫法，比如SS 也可以叫做MM<慢慢>, FF 也可以叫做KK<快快>，重要的是背后的仿真模型在如何进化，其实所有的进化都是为了更精确的拟合，都是为了复杂问题简单化，如果有朝一日，算力足以支撑SSTA, 那Global variation 也就可以回归随机性了——整个剔除悲观度的过程，就是动用一切力量攫取最大的利益，完全符合人类劳作的初衷！
+
+ 
+
+ 
+
+   最近在调试foundry的IP库，发现所有的库文件都已标注了各种适用信息，其命名规则很明确。其中涉及到芯片的制作工艺，包括ffg、ssg、tt。查到一篇博客讲的很好，总结转载一下。
+
+涉及到的知识：
+
+        TT: Typical Typical
+        FF:  Fast nmos Fast pmos
+        SS: Slow nmos Slow pmos
+        FS:  Fast nmos Slow pmos
+        SF:  Slow nmos Fast pmos
+
+ 
+
+工艺角（Process Corner）
+
+        与双极晶体管不同，在不同的晶片之间以及在不同的批次之间，MOSFETs参数变化很大。为了在一定程度上减轻电路设计任务的困难，工艺工程师们要保证器件的性能在某个范围内，大体上，他们以报废超出这个性能范围的芯片的措施来严格控制预期的参数变化。通常提供给设计师的性能范围只适用于数字电路并以“工艺角”（Process Corner）的形式给出。如图，其思想是：把NMOS和PMOS晶体管的速度波动范围限制在由四个角所确定的矩形内。这四个角分别是：快NFET和快PFET，慢NFET和慢PFET，快NFET和慢PFET，慢NFET和快PFET。例如，具有较薄的栅氧、较低阈值电压的晶体管，就落在快角附近。
+        从晶片中提取与每一个角相对应的器件模型时，片上NMOS和PMOS的测试结构显示出不同的门延时，而这些角的实际选取是为了得到可接受的成品率。各种工艺角和极限温度条件下对电路进行仿真是决定成品率的基础。所以我们所说的ss、tt、ff分别指的是左下角的corner，中心、右上角的corner。
+
+
+
+        如果采用5-corner model会有TT,FF,SS,FS,SF 5个corners。如TT指NFET-Typical corner & PFET-Typical corner。其中, Typical指晶体管驱动电流是一个平均值，FAST指驱动电流是其最大值，而SLOW指驱动电流是其最小值（此电流为Ids电流）这是从测量角度解释，也有理解为载流子迁移率(Carrier mobility)的快慢. 载流子迁移率是指在载流子在单位电场作用下的平均漂移速度。至于造成迁移率快慢的因素还需要进一步查找资料。单一器件所测的结果是呈正态分布的，均值在TT，最小最大限制值为SS与FF。从星空图看NFET，PFET所测结果,这5种覆盖大约+-3 sigma即约99.73% 的范围。对于工艺偏差的情况有很多，比如掺杂浓度，制造时的温度控制，刻蚀程度等，所以造成同一个晶圆上不同区域的情况不同，以及不同晶圆之间不同情况的发生。这种随机性的发生，只有通过统计学的方法才能评估覆盖范围的合理性。
+
+参考链接：http://blog.sina.com.cn/s/blog_71462a650102vrnm.html 
+
+参考链接：https://blog.csdn.net/u014404875/article/details/111885569
