@@ -16,3 +16,5 @@ set_output_delay 0.6 -clock CLK $outs
 You have to create a mode flag in the Specification/Mappings/Flags first, then you will find the mode flag in the memory field. After this, you would set the value accordingly.
 
 
+verilog：
+除以常数是可以综合的，包括 a/3, a % 3 ...对于常数综合工具可以进行优化。
