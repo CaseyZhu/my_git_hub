@@ -31,3 +31,5 @@ https://www.techpowerup.com/gpu-specs/
 https://paddlepedia.readthedocs.io/en/latest/tutorials/CNN/convolution_operator/3D_Convolution.html  Paddle-Paddle
 
 https://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#instruction-set-ref GPU 指令集
+
+https://carpentries-incubator.github.io/lesson-gpu-programming/ GPU training
