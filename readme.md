@@ -37,3 +37,5 @@ https://carpentries-incubator.github.io/lesson-gpu-programming/ GPU training
 https://zhuanlan.zhihu.com/p/84219777  混合精度训练fp32+fp16， fp32 转fp16 会乘一个系数防止fp16溢出（最大值溢出和小数位溢出），整个计算过程用fp16，但是最终的weight 和 loss 为了防止溢出都采用fp32
 
 https://zhuanlan.zhihu.com/p/576002611 transformer engine 混合精度训练， TE 内部可以设置统计窗口的大小，硬件自动以某种方式统计窗口内值的范围（一般是absmax）,然后反馈给软件调整精度
+
+https://blog.csdn.net/weixin_42730667/article/details/109838089 GPU simt 流水实现
