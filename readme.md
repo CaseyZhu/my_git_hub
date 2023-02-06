@@ -33,3 +33,5 @@ https://paddlepedia.readthedocs.io/en/latest/tutorials/CNN/convolution_operator/
 https://docs.nvidia.com/cuda/cuda-binary-utilities/index.html#instruction-set-ref GPU 指令集
 
 https://carpentries-incubator.github.io/lesson-gpu-programming/ GPU training
+
+https://zhuanlan.zhihu.com/p/84219777  混合精度训练fp32+fp16
