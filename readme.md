@@ -39,3 +39,5 @@ https://zhuanlan.zhihu.com/p/84219777  混合精度训练fp32+fp16， fp32 转fp
 https://zhuanlan.zhihu.com/p/576002611 transformer engine 混合精度训练， TE 内部可以设置统计窗口的大小，硬件自动以某种方式统计窗口内值的范围（一般是absmax）,然后反馈给软件调整精度
 
 https://blog.csdn.net/weixin_42730667/article/details/109838089 GPU simt 流水实现
+
+https://blog.csdn.net/i_chip_backend/article/details/121130370 sram
