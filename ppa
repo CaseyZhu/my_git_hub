@@ -1,0 +1,21 @@
+GPGPU
+选NV Ampere A100作为代表，7nm，PCIe，40G HBM2e的版本250W。TOPS/W方面，INT8 : FP16 = 2 : 1。INT8 624TOPS/250W = 2.5TOPS/W。FP16, (312+78)TOPS/250W = 1.5TFOPS/W。
+
+Perf/W方面，根据MLPerf结果，Resnet50 32778IPS/250W = 130 IPS/W。Bert base，2836 IPS/250W = 11 IPS/W。
+
+根据我的判断，MLPerf上的结果，应该是没有加入A100 高级特性的成绩，比如：Sparsity，residency control，Compression等。都用起来的话，应该还是小几十个点的提升。
+
+其他家的GPGPU就不拿出来看了，大致差不多。AMD的MI更注重高精度的AI，因此在INT8方面投入不多，而且也没有上面的提到的为AI所加的高级特性。
+
+Google是AI芯片里走在最前面的公司，从第一代开始业务落地，当前已经是第4代了。而且不想一般公司，Google非常开放，把每一代的架构，理念甚至一些详细设计，参数，结果数据等都公开出来，非常大气。这些详细的资料，让我们从第一代的脉动矩阵设计理念和细节开始，看着它怎么一步一步扩展到训练，然后在第4代推理/训练双产品线。它的架构变化过程，包括脉动矩阵的变化，vector/scalar的变化，memory系统的变化，都是非常有益架构师学习和思考的。所以非常感谢Google的大气！
+
+TPUv4i比较适合拿来对比，因为同是7nm而训练的v4还没看足够信息。不过TPU主打BF16，它的INT8和BF16是相同的算力。所以INT8的TOPS/W很低，138/175=0.8 TOPS/W，当然BF16也能保持在0.8TOPS/W，不过还是低于NV A100的
+
+以Cloud AI 100为例看看Qualcomm的AI引擎，能效表现和Tenstorrent Grayskull差不多，还稍微好一点。
+
+TOPS/W方面，INT8 400 TOPS/75W=5.3T OPS/W，FP16 200 TOPS/75W=2.7 TOPS/W, 是2:1的比例，因此FP16方面比Grayskull高。
+
+https://zhuanlan.zhihu.com/p/457265026
+
+s2 1.25TOPs/W 0.8T/W
+s3: 单mpu int8 8Tops/w, fp16 4Tops/W
