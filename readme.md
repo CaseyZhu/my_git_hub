@@ -41,3 +41,5 @@ https://zhuanlan.zhihu.com/p/576002611 transformer engine 混合精度训练， 
 https://blog.csdn.net/weixin_42730667/article/details/109838089 GPU simt 流水实现
 
 https://blog.csdn.net/i_chip_backend/article/details/121130370 sram
+
+https://zhuanlan.zhihu.com/p/372973726 卷积实现
