@@ -45,3 +45,5 @@ https://blog.csdn.net/i_chip_backend/article/details/121130370 sram
 https://zhuanlan.zhihu.com/p/372973726 卷积实现
 
 https://zhuanlan.zhihu.com/p/372973726 GEMM
+
+https://csstormq.github.io/blog/LLVM%20%E4%B9%8B%E5%90%8E%E7%AB%AF%E7%AF%87%EF%BC%882%EF%BC%89%EF%BC%9A%E5%A6%82%E4%BD%95%E6%89%A9%E5%B1%95%20llc%20%E7%9A%84%E7%9B%AE%E6%A0%87%E5%90%8E%E7%AB%AF  llvm 后端
