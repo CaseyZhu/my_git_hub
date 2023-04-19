@@ -50,3 +50,5 @@ https://csstormq.github.io/blog/LLVM%20%E4%B9%8B%E5%90%8E%E7%AB%AF%E7%AF%87%EF%B
 
 
 https://microsoft.github.io/ai-edu/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/A2-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/%E7%AC%AC8%E6%AD%A5%20-%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/17.3-%E5%8D%B7%E7%A7%AF%E7%9A%84%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E5%8E%9F%E7%90%86.html  反向传播，需要记录中间结果，max pooling 需要记录位置信息。向前传递的信息包括delta forward, 以及当前层的delta weight
+
+https://skfwe.cn/p/iverilog--gtkwave-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/ gtk-wave 使用
