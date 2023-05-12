@@ -56,3 +56,5 @@ https://skfwe.cn/p/iverilog--gtkwave-%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/ gtk-w
 https://docs.boom-core.org/en/latest/sections/rename-stage.html#id4  BOOM out of order
 
 https://accel-sim.github.io/
+
+https://zhuanlan.zhihu.com/p/472473665 CAche basic
