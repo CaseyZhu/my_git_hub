@@ -58,3 +58,5 @@ https://docs.boom-core.org/en/latest/sections/rename-stage.html#id4  BOOM out of
 https://accel-sim.github.io/
 
 https://zhuanlan.zhihu.com/p/472473665 CAche basic
+
+4800TOPS*1bit（相当于INT8算力600TOPS），I/O双向带宽大于或等于600GB/s才会受到限制
