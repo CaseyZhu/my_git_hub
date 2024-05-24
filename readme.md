@@ -62,3 +62,5 @@ https://zhuanlan.zhihu.com/p/472473665 CAche basic
 4800TOPS*1bit（相当于INT8算力600TOPS），I/O双向带宽大于或等于600GB/s才会受到限制
 
 https://godbolt.org/z/zMd6cshbG  CUDA 在线编译
+
+https://zhuanlan.zhihu.com/p/503078043 Cache 歧义和别名
