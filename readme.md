@@ -66,3 +66,5 @@ https://godbolt.org/z/zMd6cshbG  CUDA 在线编译
 https://zhuanlan.zhihu.com/p/503078043 Cache 歧义和别名
 
 https://www.cnblogs.com/thisway2014/p/16385101.html DDR channel-->dimm-->rank-->chip-->bank-->row/clom, page rank 中所有chip 的同一个bank 的一行
+
+https://kuterdinel.com/nv_isa/ NV hopper指令集
